@@ -1,0 +1,24 @@
+.button {
+    padding: 5vh;
+    background-color: white;
+    
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    border-radius: 1rem;
+    border-color: black;
+    border-width: 0.5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.button:hover:not(.disabled) {
+    background-color: #a3a3a3;
+}
+
+.button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
