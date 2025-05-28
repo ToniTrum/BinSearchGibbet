@@ -4,12 +4,13 @@ import styles from "./NumberList.module.css";
 
 interface NumberListProps {
     answer: number;
+    countNumbers: number;
     onSelect: (n: number) => void;
   }
-export const NumberList: React.FC<NumberListProps> = ({ answer, onSelect  }) => {
+export const NumberList: React.FC<NumberListProps> = ({ answer, onSelect, countNumbers  }) => {
   const [lowBound, setLowBound] = useState(0);
-  const [highBound, setHighBound] = useState(51);
-  const numbers = Array.from({ length: 50 }, (_, i) => i + 1);
+  const [highBound, setHighBound] = useState(countNumbers + 1);
+  const numbers = Array.from({ length: countNumbers }, (_, i) => i + 1);
 
   const handleClick = (n: number) => {
     onSelect(n);

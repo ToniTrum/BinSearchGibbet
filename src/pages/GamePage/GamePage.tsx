@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import { NumberList } from "../../widgets/NumberList.tsx";
 import styles from "./GamePage.module.css";
+import { NumberAttempts } from "../../widgets/NumberAttempts/NumberAttempts.tsx";
 
 export const GamePage = () => {
   const ANSWER = 42;
   const [selected, setSelected] = useState<number | null>(null);
-
+    const COUNT_NUMBERS = 60;
+    const [countAttempts, setCountAttempts] = useState(Math.floor(Math.log2(COUNT_NUMBERS)))
   const handleSelect = (n: number) => {
+
     setSelected(n);
+    if (n === ANSWER) {
+      alert("You win!");
+    }
+    if (countAttempts <= 0) {
+      alert("You lose!");
+    }
+    setCountAttempts(countAttempts - 1);
   };
 
   const relation =
@@ -29,7 +39,8 @@ export const GamePage = () => {
         </>
 
       )}
-      <NumberList answer={ANSWER} onSelect={handleSelect} />
+      <NumberAttempts countAttempts={countAttempts} />
+      <NumberList answer={ANSWER} onSelect={handleSelect} countNumbers={COUNT_NUMBERS} />
     </div>
   );
 };
