@@ -15,7 +15,7 @@ export const NumberList: React.FC<NumberListProps> = ({ answer, onSelect, countN
   const handleClick = (n: number) => {
     onSelect(n);
     if (n === answer) {
-      alert("You win!");
+      // alert("You win!");
     } else if (n < answer) {
       setLowBound(prev => Math.max(prev, n));
     } else {
