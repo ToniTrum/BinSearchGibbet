@@ -5,7 +5,7 @@ interface GibbetProps {
     maxAttempts: number;
 }
 
-const Gibbet: React.FC<GibbetProps> = ({ countAttempts, maxAttempts }) => {
+export const Gibbet: React.FC<GibbetProps> = ({ countAttempts, maxAttempts }) => {
     const failedAttempts = maxAttempts - countAttempts;
     const showHead = failedAttempts >= 1;
     const showBody = failedAttempts >= 2;
