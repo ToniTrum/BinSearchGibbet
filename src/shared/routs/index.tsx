@@ -1,1 +1,0 @@
-export { START_PAGE_ROUTE, GAME_PAGE_ROUTE } from "./routs"

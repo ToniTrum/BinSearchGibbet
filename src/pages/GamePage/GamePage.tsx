@@ -1,56 +1,26 @@
-import React, { useState } from "react";
 import { NumberList } from "../../widgets/NumberList.tsx";
-import styles from "./GamePage.module.css";
-import { NumberAttempts } from "../../widgets/NumberAttempts/NumberAttempts.tsx";
 import { GameOverModal } from "../../shared/ui/GameOverModal/GameOverModal.tsx";
+import { COUNT_NUMBERS } from "../../shared/constants";
+import { GameHeader } from "../../widgets/GameHeader";
+import { useGuessNumber } from "../../processes/useGuessNumber";
 
 export const GamePage = () => {
-  const ANSWER = 42;
-  const COUNT_NUMBERS = 60;
-  const MAX_ATTEMPTS = Math.floor(Math.log2(COUNT_NUMBERS));
-
-  const [selected, setSelected] = useState<number | null>(null);
-  const [countAttempts, setCountAttempts] = useState(MAX_ATTEMPTS);
-  const [gameKey, setGameKey] = useState(0);
-
-  const handleSelect = (n: number) => {
-    setSelected(n);
-    if (countAttempts <= 0 || n === ANSWER) return;
-    setCountAttempts((prev) => prev - 1);
-  };
-
-  const handleRestart = () => {
-    setGameKey((prev) => prev + 1);
-    setSelected(null);
-    setCountAttempts(MAX_ATTEMPTS);
-  };
-
-  const relation =
-    selected === null
-      ? ""
-      : selected > ANSWER
-      ? "<"
-      : selected < ANSWER
-      ? ">"
-      : "=";
+  const { answer, selected, countAttempts, selectNumber, restartGame, gameKey } = useGuessNumber();
 
   return (
-    <div className={styles.page}>
-      <h1>Ответ (тут будут вопросы): {ANSWER}</h1>
-
-      {selected !== null && (
-        <>
-          <h2 className={styles.relation}>Тебе надо поискать число, которое:</h2>
-          <span>{relation}</span>
-        </>
-      )}
-
-      <GameOverModal isOpen={countAttempts <= 0} onClose={handleRestart} />
-      <NumberAttempts countAttempts={countAttempts} />
+    <div className="page">
+      <GameHeader 
+        selected={selected} 
+        answer={answer} 
+      />
+      <GameOverModal 
+        isOpen={countAttempts <= 0 || selected === answer} 
+        isWin={selected === answer} 
+        onClose={restartGame} 
+      />
       <NumberList
         key={gameKey}
-        answer={ANSWER}
-        onSelect={handleSelect}
+        onSelect={selectNumber}
         countNumbers={COUNT_NUMBERS}
       />
     </div>
