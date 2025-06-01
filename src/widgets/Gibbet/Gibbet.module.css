@@ -1,0 +1,17 @@
+.gibbet {
+    stroke-width: 4;
+    height: 30vh;
+}
+
+.line {
+    stroke: #833200;
+}
+
+.bodyPart {
+    stroke: #211515;
+    fill: none;
+}
+
+.bodyPart.circle {
+    fill: none;
+}
