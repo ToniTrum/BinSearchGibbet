@@ -28,14 +28,14 @@ export const GameOverModal = ({ isOpen, isWin, onClose }: Props) => {
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <h2 className={styles.title}>{isWin ? 'Вы победили' : 'Вы проиграли'}</h2>
         <div className={styles.buttons}>
-          <button 
-          className={styles.button} 
+          <button
+          className={`${styles.button} ${isWin ? styles.winButton : styles.loseButton}`}
           onClick={onClose}
         >
           Заново
         </button>
-        <button 
-          className={styles.button} 
+        <button
+          className={`${styles.button} ${isWin ? styles.winButton : styles.loseButton}`}
           onClick={() => navigate(START_PAGE_ROUTE)}
         >
           На главную
