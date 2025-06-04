@@ -6,7 +6,7 @@ interface UseRelation {
 export const useRelation = ({ selected, answer }: UseRelation) => {
     const relation =
         selected === null
-        ? ""
+        ? "null"
         : selected > answer
         ? "<"
         : selected < answer

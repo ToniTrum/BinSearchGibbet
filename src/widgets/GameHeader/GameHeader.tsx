@@ -14,12 +14,11 @@ export const GameHeader: React.FC<GameHeaderProps> = ({ selected, answer }: Game
         <>
         <h1 className={styles.header}>Попробуй угадать загаданное число</h1>
 
-        {selected !== null && (
-            <>
-            <h2 className={styles.relation}>Искомое число:</h2>
-            <span className={styles.relation_sign}>{relation} {selected}</span>
-            </>
-        )}
+            <div className={`${styles.clue} ${selected ? styles.visible : styles.hidden}`}>
+                <h2 className={styles.relation}>Искомое число:</h2>
+                <div className={styles.relation_sign}>{relation} {selected}</div>
+            </div>
+
         </>
     )
 }
