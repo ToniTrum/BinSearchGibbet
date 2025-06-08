@@ -1,13 +1,14 @@
-import type React from 'react';
+import  React, { forwardRef } from 'react';
 import { useRelation } from '../../features/useRelation';
 import styles from './GameHeader.module.css'
 
 interface GameHeaderProps {
     selected: number | null;
     answer: number;
+    ref: React.RefObject<HTMLHeadingElement | null>;
 }
 
-export const GameHeader: React.FC<GameHeaderProps> = ({ selected, answer }: GameHeaderProps) => {
+export const GameHeader = forwardRef<HTMLHeadingElement, GameHeaderProps>(({ selected, answer }, ref) => {
     const relation = useRelation({ selected, answer });
 
     return (
@@ -17,9 +18,14 @@ export const GameHeader: React.FC<GameHeaderProps> = ({ selected, answer }: Game
             <div className={`${styles.clue} ${selected ? styles.visible : styles.hidden}`}>
                 <h2 className={styles.relation}>
                     Искомое число: &nbsp;
-                    <span className={styles.relation_sign}>{relation}&nbsp;{selected}</span>
+                    <span 
+                        className={styles.relation_sign}
+                        ref={ref}
+                    >
+                        {relation}&nbsp;{selected}
+                    </span>
                 </h2>
             </div>
         </>
-    )
-}
+    );
+});
