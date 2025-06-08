@@ -11,11 +11,10 @@
 .relation_sign {
     font-size: 2rem;
     color: #955656;
-    text-align: center;
 }
 
 .hidden {
-   opacity: 0;
+    opacity: 0;
 }
 .visible {
     opacity: 1;
