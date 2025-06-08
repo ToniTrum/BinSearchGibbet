@@ -1,0 +1,29 @@
+.clue {
+    position: fixed;
+    top: 5vh;
+    right: 2vw;
+
+    font-size: 2rem;
+    color: white;
+    background-color: #955656;
+
+    padding: 2vw;
+    border-radius: 100%;
+
+    transition: opacity 0.2s ease-in-out;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+@media (max-width: 450px) {
+    .clue {
+        font-size: 1.5rem;
+        padding: 3vw;
+    }
+}
